@@ -1,0 +1,168 @@
+/* Estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #F9E6CF;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Contenedor principal */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* Encabezado */
+.profile-header {
+  background: #69247C;
+  padding: 2rem;
+  color: white;
+  position: relative;
+}
+
+.profile-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-header i {
+  margin-right: 10px;
+}
+
+.security-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Contenido principal */
+.profile-content {
+  padding: 2rem;
+}
+
+/* Datos del usuario */
+.user-data {
+  margin-bottom: 2rem;
+}
+
+.data-row {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: #f8f9fa;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.data-row:hover {
+  transform: translateX(10px);
+}
+
+.data-row label {
+  width: 200px;
+  font-weight: 600;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.data-row label i {
+  color: #69247C;
+  font-size: 1.1rem;
+}
+
+.data-row span {
+  flex-grow: 1;
+  color: #34495e;
+}
+
+.password-display {
+  font-family: monospace;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+pre {
+  background: #2c3e50;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+/* Botones */
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.home-btn {
+  background: #69247C;
+  color: white;
+}
+
+.home-btn:hover {
+  background: #DA498D;
+  transform: translateY(-2px);
+}
+
+.logout-btn {
+  background: #f4a42d;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #FAC67A;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-container {
+      margin: 1rem;
+  }
+
+  .data-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+  }
+
+  .data-row label {
+      width: auto;
+  }
+
+  .profile-actions {
+      flex-direction: column;
+  }
+}

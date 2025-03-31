@@ -1,0 +1,155 @@
+* {
+  margin: 5px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+      "nav header header"
+      "nav main aside";
+  height: 100vh;
+  gap: 5px;
+
+}
+
+nav {
+  grid-area: nav;
+  background: #F9E6CF;
+  display: flex;
+  position: fixed;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 15%;
+  flex: 1;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-radius: 1.5rem;
+}
+
+nav .nav-shortcuts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+.nav-shortcuts i {
+  font-size: 3rem; /* Cambia el tamaño */
+  color: #DA498D; /* Cambia el color */
+  cursor: pointer;
+}
+
+nav .filter {
+  background-color: #ffd89e;
+  width: 60%;
+  height: 98%;
+  text-align: center;
+  color: #69247C;
+  font-size: 1.5rem;
+  border-radius: 1.5rem; /* Nuevo */
+
+}
+
+header {
+  flex: 1;
+  background: #F9E6CF;
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border-radius: 1.5rem; /* Nuevo */
+
+}
+main {
+  grid-area: main;
+  background: #ffd89e;
+  padding: 20px;
+  min-height: auto; /* Ensures content fills the screen if needed */
+  padding-top: 20px; /* Adjust for any fixed header */
+  border-radius: 1.5rem;
+
+}
+aside {
+  grid-area: aside;
+  background: #F9E6CF;
+  padding: 20px;
+  border-radius: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  body {
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: 
+        "nav header"
+        "nav main";
+  }
+  aside {
+    display: none;
+  }
+  nav{
+    width: 23%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+        "header"
+        "nav"
+        "main";
+  }
+  nav {
+    position: relative;
+    height: auto;
+    width: 97%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  nav .nav-shortcuts {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.user-panel {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+#logoutBtn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#logoutBtn:hover {
+  background: #cc0000;
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 10px;
+  }
+  nav img {
+    width: 30px;
+    height: 30px;
+  }
+}

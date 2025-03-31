@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario - Stickify</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1><i class="fa-solid fa-user-shield"></i> Mi Perfil</h1>
+            <div class="security-badge">
+                <i class="fa-solid fa-lock"></i>
+                <span>Cuenta verificada</span>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="user-data" id="userData">
+                <!-- Datos dinámicos desde JS -->
+            </div>
+            
+            <div class="profile-actions">
+                <a href="home.html" class="btn home-btn">
+                    <i class="fa-solid fa-house"></i> Volver al Inicio
+                </a>
+                <button id="logoutBtn" class="btn logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/auth.js"></script>
+    <script src="/js/profile.js"></script>
+</body>
+</html>

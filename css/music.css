@@ -1,0 +1,28 @@
+#musicResults {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 20px;
+}
+
+.song-container img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+}
+
+.song-info {
+  font-size: 1rem;
+  color: #69247C;
+}
+
+.rating-stars {
+  font-size: 1.5rem;
+  color: gold;
+}
+
+/* Responsive: 2 canciones por fila */
+@media (max-width: 1024px) {
+  #musicResults {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

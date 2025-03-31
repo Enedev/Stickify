@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/css/background.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/music.css">
+  <link rel="stylesheet" href="/css/pagination.css">
+  <link rel="stylesheet" href="/css/genreFilter.css">
+  <link rel="stylesheet" href="/css/searcher.css">
+  <!-- Font Awesome CDN (Latest Version) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-shortcuts">
+      <a href=""><i class="fa-solid fa-home"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-gear"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-list-check"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-music"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-user-group"></i></a>
+    </div>
+    <div class="filter" id="genreFilterContainer">
+      <button id="genreToggle">Filtrar Géneros</button>
+      <div id="genreFilters">
+        <div class="checkbox-container">
+          <!-- Aquí se generarán los checkboxes dinámicamente -->
+        </div>
+      </div>
+    </div>
+
+  </nav>
+  <header>
+    <input type="text" id="searchInput" placeholder="Buscar música...">
+    <button id="searchButton">Buscar</button>
+  </header>
+
+  <main>
+    <div id="pagination">
+      <!-- Aquí se mostrarán los botones de paginación -->
+    </div>
+    <div id="musicResults"></div>
+
+  </main>
+
+  <aside>
+    <div class="user-panel">
+      <div class="user-info">
+          <button id="logoutBtn">Cerrar sesión</button>
+      </div>
+  </div>
+  </aside>
+
+  <script src="/js/music.js"></script>
+  <script src="/js/genreFilter.js"></script>
+  <script src="/js/playlist.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/auth.js"></script>
+
+</body>
+
+</html>
