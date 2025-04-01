@@ -24,15 +24,27 @@
       <a href="playlist.html"><i class="fa-solid fa-list-check"></i></a>
       <a href="songs.html"><i class="fa-solid fa-music"></i></a>
       <a href="authors.html"><i class="fa-solid fa-user-group"></i></a>
-      <a id="logoutBtn" ><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+      <a id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
     </div>
-    <div class="filter" id="genreFilterContainer">
+    <div class="filter" id="allFiltersContainer">
       <button id="genreToggle">Filtrar Géneros</button>
       <div id="genreFilters">
-        <div class="checkbox-container">
-          <!-- Aquí se generarán los checkboxes dinámicamente -->
-        </div>
+        <span class="close-filter" data-filter="genreFilters">&times;</span>
+        <div class="checkbox-container"></div>
       </div>
+
+      <button id="dateToggle">Filtrar por Fecha</button>
+      <div id="dateFilters">
+        <span class="close-filter" data-filter="dateFilters">&times;</span>
+        <input type="text" id="dateInput" placeholder="YYYY">
+      </div>
+
+      <button id="artistToggle">Filtrar por Artista</button>
+      <div id="artistFilters">
+        <span class="close-filter" data-filter="artistFilters">&times;</span>
+        <div class="artist-checkbox-container"></div>
+      </div>
+    </div>
     </div>
 
   </nav>
@@ -50,7 +62,9 @@
   </main>
 
   <aside>
-  </aside>
+    <h2>Canciones Mejor Calificadas</h2>
+    <ol id="topRatedList"></ol>
+</aside>
   <!-- Modal -->
   <div id="songModal" class="modal">
     <div class="modal-content">

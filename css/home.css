@@ -5,6 +5,7 @@
 }
 
 body {
+  font-family: 'Poppins', sans-serif;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: auto 1fr;
@@ -99,8 +100,30 @@ aside {
   margin-top: 3px;
 }
 
+aside#topRatedSongs {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 250px;
+}
+
+aside#topRatedSongs ul {
+  list-style: none;
+  padding: 0;
+}
+
+aside#topRatedSongs li {
+  margin-bottom: 10px;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
+  
   body {
     grid-template-columns: 1fr 3fr;
     grid-template-areas: 
@@ -116,6 +139,10 @@ aside {
 }
 
 @media (max-width: 768px) {
+  #genreFilters, #dateFilters, #artistFilters{
+    transform: translateX(-100%); /* Mueve el contenedor 100% de su ancho a la izquierda */
+
+  }
   body {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
@@ -145,6 +172,10 @@ aside {
 }
 
 @media (max-width: 480px) {
+  #genreFilters, #dateFilters, #artistFilters{
+    transform: translateX(-100%); /* Mueve el contenedor 100% de su ancho a la izquierda */
+
+  }
   main {
     padding: 10px;
   }

@@ -3,13 +3,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("searchInput");
     const searchButton = document.getElementById("searchButton");
     const pagination = document.getElementById("pagination");
+    const genreToggle = document.getElementById("genreToggle");
     const genreFilters = document.getElementById("genreFilters");
+    const dateToggle = document.getElementById("dateToggle");
+    const dateFilters = document.getElementById("dateFilters");
+    const dateInput = document.getElementById("dateInput");
+    const applyDateFilter = document.getElementById("applyDateFilter");
+    const artistToggle = document.getElementById("artistToggle");
+    const artistFilters = document.getElementById("artistFilters");
 
     let currentPage = 1;
     const songsPerPage = 21;
     let songObjects = [];
     let allGenres = new Set();
     let activeGenres = new Set();
+    let allArtists = new Set();
+    let activeArtists = new Set();
+    let activeFilters = {
+        genre: new Set(),
+        date: null,
+        artist: new Set()
+    };
 
     let songData = JSON.parse(localStorage.getItem('songData')) || {};
 
@@ -19,12 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('songData', JSON.stringify(songData));
     }
 
-    // music.js (modificaciones)
     function fetchSongs(searchTerm = "music") {
-        fetch(`https://itunes.apple.com/search?term=${searchTerm}&limit=100`)
+        return fetch(`https://itunes.apple.com/search?term=${searchTerm}&limit=100`)
             .then((response) => response.json())
             .then((data) => {
-                // Canciones de la API
                 const apiSongs = data.results.map((song) => {
                     if (!songData[song.trackId]) {
                         songData[song.trackId] = { ratings: {}, comments: [] };
@@ -36,10 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         primaryGenreName: song.primaryGenreName,
                         collectionName: song.collectionName,
                         artworkUrl100: song.artworkUrl100,
+                        releaseDate: song.releaseDate,
+                        isUserUpload: false
                     };
                 });
 
-                // Canciones subidas por usuarios
                 const uploadedSongs = JSON.parse(localStorage.getItem('uploadedSongs')) || [];
                 uploadedSongs.forEach(song => {
                     if (!songData[song.trackId]) {
@@ -47,20 +60,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Combina ambas listas
-                songObjects = [...apiSongs, ...uploadedSongs];
+                songObjects = [...apiSongs, ...uploadedSongs.map(song => ({ ...song, isUserUpload: true }))];
 
-                // Actualiza géneros
                 allGenres.clear();
-                songObjects.forEach(song => allGenres.add(song.primaryGenreName));
+                allArtists.clear();
+                songObjects.forEach(song => {
+                    allGenres.add(song.primaryGenreName);
+                    allArtists.add(song.artistName);
+                });
 
                 renderGenres();
+                renderArtists();
                 renderSongs();
                 setupPagination();
                 saveSongData();
+
+                renderTopRatedSongs();
             })
             .catch((error) => console.error("Error:", error));
     }
+
     function renderSongs() {
         musicResults.innerHTML = "";
         const start = (currentPage - 1) * songsPerPage;
@@ -68,10 +87,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
 
-        let filteredSongs = songObjects;
-        if (activeGenres.size > 0) {
-            filteredSongs = songObjects.filter((song) => activeGenres.has(song.primaryGenreName));
-        }
+        let filteredSongs = songObjects.filter(song => {
+            let genreFilter = activeFilters.genre.size === 0 || activeFilters.genre.has(song.primaryGenreName);
+            let dateFilter = !activeFilters.date || (song.releaseDate && song.releaseDate.startsWith(activeFilters.date));
+            let artistFilter = activeFilters.artist.size === 0 || activeFilters.artist.has(song.artistName);
+            return genreFilter && dateFilter && artistFilter;
+        });
+
         if (searchFunction) {
             const currentSearchTerm = searchFunction();
             filteredSongs = filteredSongs.filter(song =>
@@ -85,6 +107,14 @@ document.addEventListener("DOMContentLoaded", () => {
         songsToDisplay.forEach((song) => {
             const songContainer = document.createElement("div");
             songContainer.classList.add("song-container");
+
+            let averageRating = 0;
+            if (songData[song.trackId] && songData[song.trackId].ratings) {
+                const ratings = Object.values(songData[song.trackId].ratings);
+                if (ratings.length > 0) {
+                    averageRating = ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
+                }
+            }
 
             const stars = Array(5).fill().map((_, index) => `
                 <span class="star" data-rating="${index + 1}"
@@ -103,6 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p><strong>Nombre de la canción:</strong> ${song.trackName}</p>
                         <p><strong>Género:</strong> ${song.primaryGenreName}</p>
                         <p><strong>Álbum:</strong> ${song.collectionName}</p>
+                        ${song.releaseDate ? `<p><strong>Fecha de lanzamiento:</strong> ${song.releaseDate}</p>` : ''}
+                        ${averageRating > 0 ? `<p><strong>Calificación promedio:</strong> ${averageRating.toFixed(2)}</p>` : '<p><strong>Calificación promedio:</strong> No calificado</p>'}
                     </div>
                 </div>
             `;
@@ -161,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const rating = parseInt(e.target.dataset.rating);
                 songData[trackId].ratings[currentUser.email] = rating;
 
-                // Guardar la calificación en ratingCommentsUsers
                 let ratingCommentsUsers = JSON.parse(localStorage.getItem('ratingCommentsUsers')) || {};
                 ratingCommentsUsers[currentUser.email] = ratingCommentsUsers[currentUser.email] || {};
                 ratingCommentsUsers[currentUser.email].ratings = ratingCommentsUsers[currentUser.email].ratings || {};
@@ -170,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 saveSongData();
                 openModal(trackId);
+                renderSongs();
             });
         });
 
@@ -188,7 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 songData[trackId].comments.push(newComment);
 
-                // Guardar el comentario en ratingCommentsUsers
                 let ratingCommentsUsers = JSON.parse(localStorage.getItem('ratingCommentsUsers')) || {};
                 ratingCommentsUsers[currentUser.email] = ratingCommentsUsers[currentUser.email] || {};
                 ratingCommentsUsers[currentUser.email].comments = ratingCommentsUsers[currentUser.email].comments || {};
@@ -202,17 +233,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-
         modal.querySelector('.close').onclick = () => {
             modal.style.display = "none";
         };
     }
 
     function setupPagination() {
-        let filteredSongs = songObjects;
-        if (activeGenres.size > 0) {
-            filteredSongs = songObjects.filter((song) => activeGenres.has(song.primaryGenreName));
-        }
+        let filteredSongs = songObjects.filter(song => {
+            let genreFilter = activeFilters.genre.size === 0 || activeFilters.genre.has(song.primaryGenreName);
+            let dateFilter = !activeFilters.date || (song.releaseDate && song.releaseDate.startsWith(activeFilters.date));
+            let artistFilter = activeFilters.artist.size === 0 || activeFilters.artist.has(song.artistName);
+            return genreFilter && dateFilter && artistFilter;
+        });
+
         if (searchFunction) {
             const currentSearchTerm = searchFunction();
             filteredSongs = filteredSongs.filter(song =>
@@ -237,13 +270,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderGenres() {
-        genreFilters.innerHTML = "";
+        genreFilters.querySelector('.checkbox-container').innerHTML = "";
         allGenres.forEach((genre) => {
             const genreCheckbox = document.createElement("input");
             genreCheckbox.type = "checkbox";
             genreCheckbox.id = genre;
             genreCheckbox.value = genre;
-            genreCheckbox.checked = activeGenres.has(genre);
+            genreCheckbox.checked = activeFilters.genre.has(genre);
 
             const genreLabel = document.createElement("label");
             genreLabel.textContent = genre;
@@ -255,24 +288,88 @@ document.addEventListener("DOMContentLoaded", () => {
 
             genreCheckbox.addEventListener("change", () => {
                 if (genreCheckbox.checked) {
-                    activeGenres.add(genre);
+                    activeFilters.genre.add(genre);
                 } else {
-                    activeGenres.delete(genre);
+                    activeFilters.genre.delete(genre);
                 }
                 currentPage = 1;
                 renderSongs();
                 setupPagination();
             });
 
-            genreFilters.appendChild(genreContainer);
+            genreFilters.querySelector('.checkbox-container').appendChild(genreContainer);
+        });
+    }
+
+    function renderArtists() {
+        artistFilters.querySelector('.artist-checkbox-container').innerHTML = "";
+        allArtists.forEach((artist) => {
+            const artistCheckbox = document.createElement("input");
+            artistCheckbox.type = "checkbox";
+            artistCheckbox.id = artist;
+            artistCheckbox.value = artist;
+            artistCheckbox.checked = activeFilters.artist.has(artist);
+
+            const artistLabel = document.createElement("label");
+            artistLabel.textContent = artist;
+            artistLabel.setAttribute("for", artist);
+
+            const artistContainer = document.createElement("div");
+            artistContainer.appendChild(artistCheckbox);
+            artistContainer.appendChild(artistLabel);
+
+            artistCheckbox.addEventListener("change", () => {
+                if (artistCheckbox.checked) {
+                    activeFilters.artist.add(artist);
+                } else {
+                    activeFilters.artist.delete(artist);
+                }
+                currentPage = 1;
+                renderSongs();
+                setupPagination();
+            });
+
+            artistFilters.querySelector('.artist-checkbox-container').appendChild(artistContainer);
+        });
+    }
+
+    dateInput.addEventListener("input", () => {
+        activeFilters.date = dateInput.value.trim();
+        currentPage = 1;
+        renderSongs();
+        setupPagination();
+    });
+
+    function renderTopRatedSongs() {
+        const topRatedList = document.getElementById("topRatedList");
+        topRatedList.innerHTML = "";
+
+        const ratedSongs = songObjects.filter(song => {
+            const ratings = Object.values(songData[song.trackId]?.ratings || {});
+            return ratings.length > 0;
+        });
+
+        const songsWithAverageRating = ratedSongs.map(song => {
+            const ratings = Object.values(songData[song.trackId].ratings);
+            const averageRating = ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
+            return { song, averageRating };
+        });
+
+        songsWithAverageRating.sort((a, b) => b.averageRating - a.averageRating);
+
+        const top5Songs = songsWithAverageRating.slice(0, 5);
+
+        top5Songs.forEach(({ song, averageRating }) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `
+                <img src="${song.artworkUrl100}" alt="${song.trackName}" style="max-width: 50px; height: auto; margin-right: 10px;">
+                ${song.artistName} - ${song.trackName} (Promedio: ${averageRating.toFixed(2)})
+            `;
+            topRatedList.appendChild(listItem);
         });
     }
 
     fetchSongs();
-
-    searchButton.addEventListener("click", () => {
-        fetchSongs(searchInput.value);
-    });
 
     const searchFunction = setupSearch(searchInput, songObjects, renderSongs, setupPagination);
 });
