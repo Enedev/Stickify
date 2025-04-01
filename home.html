@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="/css/pagination.css">
   <link rel="stylesheet" href="/css/genreFilter.css">
   <link rel="stylesheet" href="/css/searcher.css">
+  <link rel="stylesheet" href="/css/modal.css">
   <!-- Font Awesome CDN (Latest Version) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -20,9 +21,10 @@
     <div class="nav-shortcuts">
       <a href=""><i class="fa-solid fa-home"></i></a>
       <a href="profile.html"><i class="fa-solid fa-gear"></i></a>
-      <a href="profile.html"><i class="fa-solid fa-list-check"></i></a>
-      <a href="profile.html"><i class="fa-solid fa-music"></i></a>
+      <a href="playlist.html"><i class="fa-solid fa-list-check"></i></a>
       <a href="profile.html"><i class="fa-solid fa-user-group"></i></a>
+      <a id="logoutBtn" ><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+
     </div>
     <div class="filter" id="genreFilterContainer">
       <button id="genreToggle">Filtrar Géneros</button>
@@ -48,12 +50,23 @@
   </main>
 
   <aside>
-    <div class="user-panel">
-      <div class="user-info">
-          <button id="logoutBtn">Cerrar sesión</button>
-      </div>
-  </div>
   </aside>
+  <!-- Modal -->
+  <div id="songModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalSongDetails"></div>
+      <div class="rating-comments-section">
+        <h3>Valoraciones y Comentarios</h3>
+        <div id="modalRatings"></div>
+        <div id="modalComments"></div>
+        <div class="comment-input">
+          <input type="text" id="newComment" placeholder="Escribe tu comentario...">
+          <button id="submitComment">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="/js/music.js"></script>
   <script src="/js/genreFilter.js"></script>

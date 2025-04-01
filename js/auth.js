@@ -1,53 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
   try {
-      // Obtener usuario actual
       const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      
-      // Validación de rutas protegidas
-      const protectedPages = ['index.html', 'home.html']; // Agrega todas tus páginas protegidas
-      const isProtectedPage = protectedPages.some(page => 
-          window.location.pathname.includes(page)
-      );
-
-      // Redirigir si no está autenticado en páginas protegidas
-      if (isProtectedPage && !currentUser) {
-          console.warn('Acceso no autorizado - Redirigiendo a login');
-          window.location.href = 'logIn.html';
-          return;
-      }
-
-      // Redirigir si está autenticado y está en páginas de auth
+      const protectedPages = ['index.html', 'home.html', 'profile.html'];
       const authPages = ['logIn.html', 'signin.html'];
-      if (authPages.some(page => window.location.pathname.includes(page)) && currentUser) {
-          console.log('Usuario ya autenticado - Redirigiendo a home');
-          window.location.href = 'index.html';
+      const currentPath = window.location.pathname;
+
+      const safeRedirect = (path) => {
+          window.location.href = path.includes('://') ? path : `${window.location.origin}/${path}`;
+      };
+
+      // Verificar rutas protegidas
+      if (protectedPages.some(page => currentPath.includes(page)) && !currentUser) {
+          safeRedirect('logIn.html');
           return;
       }
 
-      // Configurar panel de usuario
-      const userPanel = document.querySelector('.user-panel');
-      if (userPanel) {
-          if (currentUser) {
-              userPanel.innerHTML = `
-                  <div class="user-info">
-                      <h3>Bienvenido, ${currentUser.username}</h3>
-                      <button id="logoutBtn">Cerrar sesión</button>
-                  </div>
-              `;
-              
-              // Manejador de logout
-              document.getElementById('logoutBtn').addEventListener('click', () => {
-                  localStorage.removeItem('currentUser');
-                  console.log('Sesión cerrada - Usuario eliminado');
-                  window.location.href = 'logIn.html';
-              });
-          } else {
-              window.location.href = 'logIn.html';
-          }
+      // Verificar rutas de autenticación
+      if (authPages.some(page => currentPath.includes(page)) && currentUser) {
+          safeRedirect('index.html');
+          return;
       }
+
+      // Manejar logout
+      document.body.addEventListener('click', (e) => {
+        if (e.target.closest('#logoutBtn')) {
+            // Solo eliminar la información de autenticación, no ratingCommentsUsers
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            localStorage.removeItem('currentUser');
+
+            // Feedback visual
+            e.target.classList.add('logging-out');
+            setTimeout(() => {
+                safeRedirect('logIn.html');
+            }, 500);
+        }
+    });
 
   } catch (error) {
-      console.error('Error en el sistema de autenticación:', error);
+      console.error('Error en autenticación:', error);
       localStorage.removeItem('currentUser');
       window.location.href = 'logIn.html';
   }

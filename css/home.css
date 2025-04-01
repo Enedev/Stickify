@@ -47,6 +47,12 @@ nav .nav-shortcuts {
   cursor: pointer;
 }
 
+.nav-shortcuts i:hover{
+  font-size: 3rem; /* Cambia el tamaño */
+  color: #69247C; /* Cambia el color */
+  cursor: pointer;
+}
+
 nav .filter {
   background-color: #ffd89e;
   width: 60%;
@@ -128,20 +134,6 @@ aside {
   padding: 1rem;
   border-radius: 8px;
   margin: 1rem;
-}
-
-#logoutBtn {
-  background: #ff4444;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-#logoutBtn:hover {
-  background: #cc0000;
 }
 
 @media (max-width: 480px) {
