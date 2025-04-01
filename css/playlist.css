@@ -48,7 +48,7 @@ body {
   margin: 0 0 1rem 0;
 }
 
-.save-playlist {
+.save-playlist ,.create-playlist-button {
   background: #DA498D;
   color: white;
   border: none;
@@ -60,8 +60,10 @@ body {
   gap: 0.5rem;
   transition: background 0.3s;
 }
-
-.save-playlist:hover {
+.create-playlist-button{
+  width: 100%;
+}
+.save-playlist, .create-playlist-button:hover {
   background: #69247C;
 }
 
@@ -132,3 +134,4 @@ body {
 .playlist-tracks-container::-webkit-scrollbar-thumb:hover {
   background: #69247C;
 }
+

@@ -7,8 +7,9 @@
   <title>Listas de Reproducción - Stickify</title>
   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/background.css">
+  <link rel="stylesheet" href="/css/modal.css">
   <link rel="stylesheet" href="/css/playlist.css">
-
+  <link rel="stylesheet" href="/css/modalPlaylist.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -19,17 +20,31 @@
       <a href="profile.html"><i class="fa-solid fa-gear"></i></a>
       <a href="playlist.html"><i class="fa-solid fa-list-check"></i></a>
       <a href="profile.html"><i class="fa-solid fa-user-group"></i></a>
-      <a id="logoutBtn" ><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-      
+      <a id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
     </div>
   </nav>
 
-  <!-- Mantén el nav igual que en home.html -->
   <main class="playlist-main">
+    <button id="createPlaylistButton" class="create-playlist-button">Crear Playlist</button>
+
+    <div id="createPlaylistModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Crear Nueva Playlist</h2>
+        <input type="text" id="playlistNameInput" placeholder="Nombre de la Playlist">
+        <div id="playlistSongsSelection">
+        </div>
+        <button id="saveNewPlaylist">Guardar Playlist</button>
+      </div>
+    </div>
+
+    <h1 class="playlist-title">Playlists de Usuarios</h1>
+    <div class="playlist-grid" id="userPlaylists">
+    </div>
     <h1 class="playlist-title">Playlists Automáticas</h1>
     <div class="playlist-grid" id="genrePlaylists">
-      <!-- Las playlists se insertarán aquí -->
     </div>
+
   </main>
   <script src="/js/auth.js"></script>
   <script src="/js/music.js"></script>
