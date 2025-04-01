@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const genreFilters = document.getElementById("genreFilters");
 
   genreToggle.addEventListener("click", () => {
-      genreFilters.classList.toggle("show");
+    genreFilters.classList.toggle("show");
   });
-
 });

@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Songs</title>
+  <title>Subir Canción</title>
+  <link rel="stylesheet" href="/css/background.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/upload.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-  
+  <nav>
+    <div class="nav-shortcuts">
+      <a href="home.html"><i class="fa-solid fa-home"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-gear"></i></a>
+      <a href="playlist.html"><i class="fa-solid fa-list-check"></i></a>
+      <a href="songs.html"><i class="fa-solid fa-music"></i></a>
+      <a href="authors.html"><i class="fa-solid fa-user-group"></i></a>
+      <a id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    </div>
+  </nav>
+  <main>
+    <div class="upload-form">
+      <h2>Subir Nueva Canción</h2>
+      <input type="text" id="artistName" placeholder="Nombre del Artista">
+      <input type="text" id="trackName" placeholder="Nombre de la Canción">
+      <input type="text" id="collectionName" placeholder="Nombre del Álbum">
+      <input type="text" id="primaryGenreName" placeholder="Género">
+      <input type="file" id="artworkFile" accept="image/*">
+      <button id="uploadButton">Subir Canción</button>
+    </div>
+  </main>
+  <script src="/js/upload.js"></script>
+  <script src="/js/auth.js"></script>
 </body>
+
 </html>

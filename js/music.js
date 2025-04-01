@@ -13,21 +13,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let songData = JSON.parse(localStorage.getItem('songData')) || {};
 
+    songObjects = JSON.parse(localStorage.getItem('songObjects')) || [];
+
     function saveSongData() {
         localStorage.setItem('songData', JSON.stringify(songData));
     }
 
+    // music.js (modificaciones)
     function fetchSongs(searchTerm = "music") {
         fetch(`https://itunes.apple.com/search?term=${searchTerm}&limit=100`)
             .then((response) => response.json())
             .then((data) => {
-                songObjects = data.results.map((song) => {
-                    allGenres.add(song.primaryGenreName);
+                // Canciones de la API
+                const apiSongs = data.results.map((song) => {
                     if (!songData[song.trackId]) {
-                        songData[song.trackId] = {
-                            ratings: {},
-                            comments: []
-                        };
+                        songData[song.trackId] = { ratings: {}, comments: [] };
                     }
                     return {
                         trackId: song.trackId,
@@ -38,14 +38,29 @@ document.addEventListener("DOMContentLoaded", () => {
                         artworkUrl100: song.artworkUrl100,
                     };
                 });
+
+                // Canciones subidas por usuarios
+                const uploadedSongs = JSON.parse(localStorage.getItem('uploadedSongs')) || [];
+                uploadedSongs.forEach(song => {
+                    if (!songData[song.trackId]) {
+                        songData[song.trackId] = { ratings: {}, comments: [] };
+                    }
+                });
+
+                // Combina ambas listas
+                songObjects = [...apiSongs, ...uploadedSongs];
+
+                // Actualiza géneros
+                allGenres.clear();
+                songObjects.forEach(song => allGenres.add(song.primaryGenreName));
+
                 renderGenres();
                 renderSongs();
                 setupPagination();
                 saveSongData();
             })
-            .catch((error) => console.error("Error al obtener canciones:", error));
+            .catch((error) => console.error("Error:", error));
     }
-
     function renderSongs() {
         musicResults.innerHTML = "";
         const start = (currentPage - 1) * songsPerPage;
