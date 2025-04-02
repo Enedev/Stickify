@@ -7,11 +7,13 @@
 }
 
 #genreToggle, #dateToggle, #artistToggle {
-  background: none;
+  background: #DA498D;
+  color: white;
   padding: 10px 15px;
   cursor: pointer;
   font-size: 16px;
   border: none;
+  border-radius: 10px;
 }
 
 #genreFilters, #dateFilters, #artistFilters {

@@ -4,7 +4,6 @@ body {
   padding: 0;
   background-color: #F9E6CF; /* Fondo claro */
   color: #333;
-  overflow-x: hidden;
 }
 
 header {
@@ -14,6 +13,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
+  overflow: hidden;
 }
 
 header a{
@@ -32,6 +33,18 @@ header a{
 .header .logo {
   font-size: 1.8em;
   font-weight: 700;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Alinea verticalmente la imagen y el texto */
+  gap: 10px; /* Espacio entre la imagen y la palabra "Stickify" */
+}
+
+.logo-img {
+  width: 100px;  /* Ajusta el tamaño del logo */
+  height: auto;  /* Mantiene la proporción */
+  max-height: 100px;
 }
 
 .top-right-buttons{
