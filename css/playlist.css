@@ -1,4 +1,3 @@
-
 body {
   display: grid;
   grid-template-columns: 1fr 5fr ;
@@ -103,9 +102,8 @@ body {
   font-size: 0.9rem;
 }
 
-/* Nuevos estilos para el contenedor con scroll */
 .playlist-tracks-container {
-  max-height: 400px; /* Altura máxima ajustable */
+  max-height: 400px;
   overflow-y: auto;
   background: #F9E6CF;
   border-radius: 10px;
@@ -116,7 +114,6 @@ body {
   padding: 1rem;
 }
 
-/* Opcional: Estilos para la scrollbar */
 .playlist-tracks-container::-webkit-scrollbar {
   width: 8px;
 }

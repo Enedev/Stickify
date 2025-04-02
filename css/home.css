@@ -43,14 +43,14 @@ nav .nav-shortcuts {
 }
 
 .nav-shortcuts i {
-  font-size: 3rem; /* Cambia el tamaño */
-  color: #DA498D; /* Cambia el color */
+  font-size: 3rem;
+  color: #DA498D;
   cursor: pointer;
 }
 
 .nav-shortcuts i:hover{
-  font-size: 3rem; /* Cambia el tamaño */
-  color: #69247C; /* Cambia el color */
+  font-size: 3rem;
+  color: #69247C;
   cursor: pointer;
 }
 
@@ -61,7 +61,7 @@ nav .filter {
   text-align: center;
   color: #69247C;
   font-size: 1.5rem;
-  border-radius: 1.5rem; /* Nuevo */
+  border-radius: 1.5rem;
 
 }
 
@@ -73,15 +73,15 @@ header {
   justify-content: center;
   align-items: center;
   height: 100px;
-  border-radius: 1.5rem; /* Nuevo */
+  border-radius: 1.5rem;
 
 }
 main {
   grid-area: main;
   background: #ffd89e;
   padding: 20px;
-  min-height: auto; /* Ensures content fills the screen if needed */
-  padding-top: 20px; /* Adjust for any fixed header */
+  min-height: auto;
+  padding-top: 20px;
   border-radius: 1.5rem;
 
 }
@@ -121,7 +121,6 @@ aside#topRatedSongs li {
   margin-bottom: 10px;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   
   body {
@@ -140,7 +139,7 @@ aside#topRatedSongs li {
 
 @media (max-width: 768px) {
   #genreFilters, #dateFilters, #artistFilters{
-    transform: translateX(-100%); /* Mueve el contenedor 100% de su ancho a la izquierda */
+    transform: translateX(-100%);
 
   }
   body {
@@ -173,7 +172,7 @@ aside#topRatedSongs li {
 
 @media (max-width: 480px) {
   #genreFilters, #dateFilters, #artistFilters{
-    transform: translateX(-100%); /* Mueve el contenedor 100% de su ancho a la izquierda */
+    transform: translateX(-100%);
 
   }
   main {

@@ -1,22 +1,21 @@
-/* Estilos para el modal */
 .modal {
-  display: none; /* Oculto por defecto */
-  position: fixed; /* Se mantiene en la ventana del navegador */
-  z-index: 1; /* Se sitúa sobre otros elementos */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Ancho completo */
-  height: 100%; /* Alto completo */
-  overflow: auto; /* Habilita el desplazamiento si es necesario */
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* Centrado en la pantalla */
+  margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Ancho del modal */
+  width: 80%;
   border-radius: 10px;
   position: relative;
 }

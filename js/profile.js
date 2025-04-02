@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const userDataDiv = document.getElementById('userData');
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         const ratingCommentsUsers = JSON.parse(localStorage.getItem('ratingCommentsUsers')) || {};
-             // Obtener playlists del usuario
         const playlistUser = JSON.parse(localStorage.getItem('playlistUser')) || {};
         const userPlaylists = playlistUser[currentUser.email] || [];
 
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
       `;
 
-        // Mostrar ratings y comentarios del usuario
         if (ratingCommentsUsers[currentUser.email]) {
             if (ratingCommentsUsers[currentUser.email].ratings) {
                 userDetailsHTML += `
@@ -69,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Mostrar playlists si existen
         if(userPlaylists.length > 0) {
             userDetailsHTML += `
                 <div class="data-row">
@@ -94,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         userDataDiv.innerHTML = userDetailsHTML;
 
-        // Manejador de logout
         document.getElementById('logoutBtn').addEventListener('click', () => {
             localStorage.removeItem('currentUser');
             window.location.href = 'logIn.html';

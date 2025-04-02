@@ -2,12 +2,12 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #F9E6CF; /* Fondo claro */
+  background-color: #F9E6CF;
   color: #333;
 }
 
 header {
-  background-color: #69247C; /* Morado oscuro para el header */
+  background-color: #69247C;
   color: #fff;
   padding: 20px;
   display: flex;
@@ -37,13 +37,13 @@ header a{
 
 .logo {
   display: flex;
-  align-items: center; /* Alinea verticalmente la imagen y el texto */
-  gap: 10px; /* Espacio entre la imagen y la palabra "Stickify" */
+  align-items: center;
+  gap: 10px;
 }
 
 .logo-img {
-  width: 100px;  /* Ajusta el tamaño del logo */
-  height: auto;  /* Mantiene la proporción */
+  width: 100px;
+  height: auto;
   max-height: 100px;
 }
 
@@ -54,7 +54,7 @@ header a{
   
 }
 .header nav.top-right-buttons a.button {
-  background-color: #DA498D; /* Rosa para botones */
+  background-color: #DA498D;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
@@ -63,7 +63,7 @@ header a{
 }
 
 .header nav.top-right-buttons a.button.primary {
-  background-color: #FAC67A; /* Amarillo para el botón principal */
+  background-color: #FAC67A;
   color: #333;
 }
 
@@ -149,7 +149,6 @@ footer {
   color: #fff;
 }
 
-/* Media Queries para Responsividad */
 @media (max-width: 768px) {
   .hero-image img{
     margin-top: 1.5rem;
@@ -162,11 +161,11 @@ footer {
     
   }
   main.hero, section.features, section.details {
-      flex-direction: column; /* Apilar elementos en pantallas pequeñas */
+      flex-direction: column;
       align-items: center;
   }
 
   .hero .hero-content, .hero .hero-image, .features .feature, .details .detail {
-      max-width: 100%; /* Ocupar todo el ancho en pantallas pequeñas */
+      max-width: 100%;
   }
 }

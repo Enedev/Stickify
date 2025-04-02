@@ -20,7 +20,6 @@
   color: gold;
 }
 
-/* Responsive: 2 canciones por fila */
 @media (max-width: 1024px) {
   #musicResults {
     grid-template-columns: repeat(2, 1fr);

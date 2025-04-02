@@ -9,7 +9,6 @@ body {
 
 }
 
-/* authors.css */
 #authorResults {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

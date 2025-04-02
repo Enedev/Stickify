@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Función para crear playlists automáticas
     const createAutoPlaylists = () => {
         const playlists = [];
         const shuffledSongs = [...uploadedSongs, ...songObjects].sort(() => 0.5 - Math.random());
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return playlists;
     };
 
-    // Función para determinar el género principal de la playlist
     const getMainGenre = (songs) => {
         const genreCount = songs.reduce((acc, song) => {
             acc[song.primaryGenreName] = (acc[song.primaryGenreName] || 0) + 1;
@@ -41,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return Object.entries(genreCount).sort((a, b) => b[1] - a[1])[0][0];
     };
 
-    // Renderizar playlists automáticas
     const renderPlaylists = (playlists) => {
         playlistContainer.innerHTML = playlists.map((playlist, index) => `
             <div class="playlist-card" data-index="${index}">
@@ -80,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Guardar playlist en el usuario
     const savePlaylistToUser = (playlist) => {
         const user = JSON.parse(localStorage.getItem('currentUser'));
         if (!user) {
@@ -96,11 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Añade la propiedad 'creator' solo si la playlist fue creada por el usuario
         if (playlist.creator) {
             playlist.creator = user.username;
         } else {
-            delete playlist.creator; // Asegura que no tenga 'creator' si es una playlist automática
+            delete playlist.creator;
         }
 
         userPlaylists.push(playlist);
@@ -112,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderUserPlaylists = (playlists) => {
         userPlaylistsContainer.innerHTML = playlists.map((playlist, index) => {
-            // Filtrar canciones inexistentes
             const validSongs = playlist.songs.filter(song => song);
 
             return `
@@ -131,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="playlist-tracks-container">
                         <div class="playlist-tracks">
                             ${validSongs.map((song, idx) => {
-                // Verificar la existencia de la canción
                 if (song) {
                     return `
                                         <div class="track">
@@ -144,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </div>
                                     `;
                 } else {
-                    return ''; // O un mensaje de error si lo prefieres
+                    return '';
                 }
             }).join('')}
                         </div>
@@ -161,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Crear y mostrar modal para crear playlists
     const createPlaylistButton = document.getElementById('createPlaylistButton');
     const createPlaylistModal = document.getElementById('createPlaylistModal');
     const closeModal = createPlaylistModal.querySelector('.close');
@@ -238,10 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
         createdPlaylists.push(playlist);
         localStorage.setItem('createdPlaylists', JSON.stringify(createdPlaylists));
 
-        // Guardar la playlist creada tambien en playlistUser
         savePlaylistToUser(playlist);
 
-        // Actualizar la lista de playlists del usuario
         renderUserPlaylists(getUserPlaylists());
     };
 
@@ -257,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return createdPlaylists;
     };
 
-    // Inicialización
     const initializePlaylists = async () => {
         if (songObjects.length === 0) {
             await fetchSongs();
@@ -274,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderUserPlaylists(userPlaylists);
     };
 
-    // Función mock de fetchSongs para compatibilidad
     const fetchSongs = async () => {
         const response = await fetch('https://itunes.apple.com/search?term=music&limit=100');
         const data = await response.json();

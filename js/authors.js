@@ -1,4 +1,3 @@
-// authors.js
 document.addEventListener("DOMContentLoaded", () => {
     const authorResults = document.getElementById("authorResults");
     let songObjects = JSON.parse(localStorage.getItem('songData')) || {};

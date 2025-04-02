@@ -1,9 +1,9 @@
 .modal-content {
   background-color: #fefefe;
-  margin: 0% auto; /* Centrado en la pantalla */
+  margin: 0% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Ancho del modal */
+  width: 80%;
   border-radius: 1.5rem;
   position: relative;
   display: flex;
@@ -18,17 +18,36 @@
   border-radius: 5px;
 }
 #saveNewPlaylist{
-  background-color: #4CAF50;
+  background-color: #DA498D;
   color: white;
   padding: 2rem 3rem;
   border: none;
   border-radius: 2rem;
   cursor: pointer;
-  margin-left: 0.4rem;
+  position: absolute;
+  top: 2rem; 
+  left: 2rem; 
+  margin-left: 0;
 }
 
-#saveNewPlayList:hover{
-  background-color: #3e8e41;
+.modal #saveNewPlaylist:hover{
+  background: #69247C;
 
 }
 
+
+@media (max-width: 1024px) {
+
+  #saveNewPlaylist{
+    background-color: #DA498D;
+    color: white;
+    padding: 2rem 3rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    position: relative;
+    top: 0rem;
+    left: 0rem;
+  }
+  
+}

@@ -15,20 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
       }
 
-      // Verificar rutas de autenticación
+      // Auth paths
       if (authPages.some(page => currentPath.includes(page)) && currentUser) {
           safeRedirect('index.html');
           return;
       }
 
-      // Manejar logout
+      // logout
       document.body.addEventListener('click', (e) => {
         if (e.target.closest('#logoutBtn')) {
-            // Solo eliminar la información de autenticación, no ratingCommentsUsers
+            // delete auth info, no ratingCommentsUsers
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             localStorage.removeItem('currentUser');
 
-            // Feedback visual
+            // Visual feedback
             e.target.classList.add('logging-out');
             setTimeout(() => {
                 safeRedirect('logIn.html');

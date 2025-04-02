@@ -1,4 +1,3 @@
-// upload.js
 document.addEventListener('DOMContentLoaded', () => {
     const uploadButton = document.getElementById('uploadButton');
 
@@ -26,15 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const reader = new FileReader();
         reader.onload = function (e) {
             const newSong = {
-                trackId: `user_${Date.now()}`, // ID único
+                trackId: `user_${Date.now()}`,
                 artistName: artistName,
                 trackName: trackName,
                 collectionName: collectionName,
                 primaryGenreName: primaryGenreName,
-                artworkUrl100: e.target.result // Imagen como Data URL
+                artworkUrl100: e.target.result 
             };
 
-            // Guardar en localStorage
             let uploadedSongs = JSON.parse(localStorage.getItem('uploadedSongs')) || [];
             uploadedSongs.push(newSong);
             localStorage.setItem('uploadedSongs', JSON.stringify(uploadedSongs));
