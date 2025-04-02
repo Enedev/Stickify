@@ -1,0 +1,61 @@
+#allFiltersContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+#genreToggle, #dateToggle, #artistToggle {
+  background: #DA498D;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+}
+
+#genreFilters, #dateFilters, #artistFilters {
+
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  display: none;
+  z-index: 10;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#genreFilters.show, #dateFilters.show,#artistFilters.show {
+  display: block;
+}
+.close-filter {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+.genre-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.genre-row label {
+  margin-left: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.genre-row input[type="checkbox"] {
+  cursor: pointer;
+}
+
+

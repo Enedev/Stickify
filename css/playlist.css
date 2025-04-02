@@ -1,0 +1,175 @@
+
+body {
+  display: grid;
+  grid-template-columns: 1fr 5fr ;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+      "nav main";
+  height: 100vh;
+  gap: 5px;
+
+}
+
+.playlist-card {
+  background: #FAC67A;
+  border-radius: 15px;
+  width: 100%;
+  margin: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.playlist-card:hover {
+  transform: translateY(-5px);
+}
+
+.playlist-header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.playlist-cover {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  border: 3px solid #69247C;
+}
+
+.playlist-info h3 {
+  color: #69247C;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.playlist-info p {
+  color: #DA498D;
+  margin: 0 0 1rem 0;
+}
+
+.save-playlist ,.create-playlist-button {
+  background: #DA498D;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s;
+}
+.create-playlist-button{
+  width: 100%;
+}
+.save-playlist, .create-playlist-button:hover {
+  background: #69247C;
+}
+
+.playlist-tracks {
+  background: #F9E6CF;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #DA498D33;
+}
+
+.track:last-child {
+  border-bottom: none;
+}
+
+.track-artwork {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.track-title {
+  color: #69247C;
+  margin: 0;
+  font-weight: 600;
+}
+
+.track-artist {
+  color: #DA498D;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Nuevos estilos para el contenedor con scroll */
+.playlist-tracks-container {
+  max-height: 400px; /* Altura máxima ajustable */
+  overflow-y: auto;
+  background: #F9E6CF;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.playlist-tracks {
+  padding: 1rem;
+}
+
+/* Opcional: Estilos para la scrollbar */
+.playlist-tracks-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist-tracks-container::-webkit-scrollbar-track {
+  background: #FAC67A;
+  border-radius: 10px;
+}
+
+.playlist-tracks-container::-webkit-scrollbar-thumb {
+  background: #DA498D;
+  border-radius: 10px;
+}
+
+.playlist-tracks-container::-webkit-scrollbar-thumb:hover {
+  background: #69247C;
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+        "header"
+        "nav"
+        "main";
+  }
+  nav {
+    position: relative;
+    height: auto;
+    width: 97%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  nav .nav-shortcuts {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.user-panel {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 10px;
+  }
+  nav img {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/css/background.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/music.css">
+  <link rel="stylesheet" href="/css/pagination.css">
+  <link rel="stylesheet" href="/css/genreFilter.css">
+  <link rel="stylesheet" href="/css/searcher.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="shortcut icon" href="/assets/icoStickify.png" type="image/x-icon">
+  <!-- Font Awesome CDN (Latest Version) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-shortcuts">
+      <a href=""><i class="fa-solid fa-home"></i></a>
+      <a href="profile.html"><i class="fa-solid fa-gear"></i></a>
+      <a href="playlist.html"><i class="fa-solid fa-list-check"></i></a>
+      <a href="songs.html"><i class="fa-solid fa-music"></i></a>
+      <a href="authors.html"><i class="fa-solid fa-user-group"></i></a>
+      <a id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+    </div>
+    <div class="filter" id="allFiltersContainer">
+      <button id="genreToggle">Filtrar por géneros</button>
+      <div id="genreFilters">
+        <span class="close-filter" data-filter="genreFilters">&times;</span>
+        <div class="checkbox-container"></div>
+      </div>
+
+      <button id="dateToggle">Filtrar por fecha</button>
+      <div id="dateFilters">
+        <span class="close-filter" data-filter="dateFilters">&times;</span>
+        <input type="text" id="dateInput" placeholder="YYYY">
+      </div>
+
+      <button id="artistToggle">Filtrar por artista</button>
+      <div id="artistFilters">
+        <span class="close-filter" data-filter="artistFilters">&times;</span>
+        <div class="artist-checkbox-container"></div>
+      </div>
+    </div>
+    </div>
+
+  </nav>
+  <header>
+    <input type="text" id="searchInput" placeholder="Buscar música...">
+    <button id="searchButton">Buscar</button>
+  </header>
+
+  <main>
+    <div id="pagination">
+      <!-- Aquí se mostrarán los botones de paginación -->
+    </div>
+    <div id="musicResults"></div>
+  </main>
+
+  <aside>
+    <h2>Canciones mejor calificadas</h2>
+    <ol id="topRatedList"></ol>
+</aside>
+  <!-- Modal -->
+  <div id="songModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div id="modalSongDetails"></div>
+      <div class="rating-comments-section">
+        <h3>Valoraciones y Comentarios</h3>
+        <div id="modalRatings"></div>
+        <div id="modalComments"></div>
+        <div class="comment-input">
+          <input type="text" id="newComment" placeholder="Escribe tu comentario...">
+          <button id="submitComment">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/music.js"></script>
+  <script src="/js/genreFilter.js"></script>
+  <script src="/js/playlist.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/auth.js"></script>
+
+</body>
+
+</html>

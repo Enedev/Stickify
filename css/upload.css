@@ -1,0 +1,78 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+      "nav main";
+  gap: 5px
+
+}
+
+/* upload.css */
+.upload-form {
+  background: #F9E6CF;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 2rem auto;
+}
+
+.upload-form input,
+.upload-form button {
+  display: block;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.8rem;
+  border: 1px solid #DA498D;
+  border-radius: 8px;
+}
+
+.upload-form button {
+  background: #69247C;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.upload-form button:hover {
+  background: #DA498D;
+}
+
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas: 
+        "header"
+        "nav"
+        "main";
+  }
+  nav {
+    position: relative;
+    height: auto;
+    width: 97%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  nav .nav-shortcuts {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.user-panel {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 10px;
+  }
+  nav img {
+    width: 30px;
+    height: 30px;
+  }
+}

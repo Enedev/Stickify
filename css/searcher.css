@@ -1,0 +1,48 @@
+/* Estilo para el input de búsqueda */
+#searchInput {
+  width: 90%;
+  padding: 10px;
+  margin-right: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+  border-radius: 1.5rem 0 0 1.5rem;
+  outline: none;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Estilo para el botón de búsqueda */
+#searchButton {
+  padding: 10px 20px;
+  background-color: #DA498D;
+  color: white;
+  border: none;
+  border-radius: 0 1.5rem 1.5rem 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  animation: slideIn 0.5s ease-out 0.2s; /* Animación con delay */
+}
+
+/* Animación para que los elementos aparezcan con deslizamiento */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Cambio de borde al hacer foco en el input */
+#searchInput:focus {
+  border-color: #69247C;
+}
+
+/* Cambio de color del botón al hacer hover */
+#searchButton:hover {
+  background-color: #69247C;
+}
