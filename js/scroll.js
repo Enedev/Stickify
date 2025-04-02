@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const nextSection = document.querySelector('.features');
             if (nextSection) {
                 window.scrollTo({
-                    top: nextSection.offsetTop - 50, 
-                    behavior: 'smooth' 
+                    top: nextSection.offsetTop - 50,
+                    behavior: 'smooth'
                 });
             }
         });
