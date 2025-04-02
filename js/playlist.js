@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const userPlaylistsContainer = document.getElementById('userPlaylists');
     let songObjects = JSON.parse(localStorage.getItem('songObjects')) || [];
     let uploadedSongs = JSON.parse(localStorage.getItem('uploadedSongs')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (!currentUser) {
+        window.location.href = 'logIn.html';
+        return;
+    }
 
     // Función para crear playlists automáticas
     const createAutoPlaylists = () => {
