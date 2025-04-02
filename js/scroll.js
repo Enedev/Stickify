@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     
     if (exploreButton) {
         exploreButton.addEventListener('click', function (e) {
-            e.preventDefault(); // Evita la recarga de la página
+            e.preventDefault();
             
-            const nextSection = document.querySelector('.features'); // Selecciona la sección a la que se moverá
+            const nextSection = document.querySelector('.features');
             if (nextSection) {
                 window.scrollTo({
-                    top: nextSection.offsetTop - 50, // Ajusta la posición
-                    behavior: 'smooth' // Hace el desplazamiento suave
+                    top: nextSection.offsetTop - 50, 
+                    behavior: 'smooth' 
                 });
             }
         });

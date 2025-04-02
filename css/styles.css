@@ -150,6 +150,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  
+  header{
+    height: 12rem;
+  }
   .hero-image img{
     margin-top: 1.5rem;
     width: 20rem;
