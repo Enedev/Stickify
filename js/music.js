@@ -135,7 +135,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             <p><strong>Canción</strong> ${song.trackName}</p>
                             <p><strong>Género</strong> ${song.primaryGenreName}</p>
                             <p><strong>Álbum</strong> ${song.collectionName}</p>
-                            ${song.releaseDate ? `<p><strong>Lanzamiento</strong> ${song.releaseDate}</p>` : ''}
+                            ${song.releaseDate ? `
+                                <p><strong>Lanzamiento</strong> 
+                                    ${new Date(song.releaseDate).toLocaleDateString('en-CA', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit'
+                                    })}
+                                </p>` 
+                                : ''}
                             <div class="rating-stars">
                             ${Array(Math.round(averageRating)).fill('<span class="star">★</span>').join('')}
                             </div>
