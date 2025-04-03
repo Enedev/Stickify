@@ -4,17 +4,18 @@ body {
   grid-template-rows: auto 1fr;
   grid-template-areas: 
       "nav main";
-  gap: 5px
-
+  gap: 5px;
+  background: var(--deep-space);
 }
 
-/* upload.css */
 .upload-form {
-  background: #F9E6CF;
+  background: var(--void);
   padding: 2rem;
   border-radius: 15px;
   max-width: 500px;
   margin: 2rem auto;
+  border: 2px solid var(--cyber-lavender);
+  box-shadow: 0 8px 25px rgba(92, 24, 154, 0.3);
 }
 
 .upload-form input,
@@ -23,19 +24,33 @@ body {
   width: 100%;
   margin: 1rem 0;
   padding: 0.8rem;
-  border: 1px solid #DA498D;
+  border: 2px solid var(--cyber-lavender);
   border-radius: 8px;
+  background: var(--deep-space);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.upload-form input:focus {
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 15px rgba(90, 24, 154, 0.3);
 }
 
 .upload-form button {
-  background: #69247C;
-  color: white;
+  background: var(--neon-purple);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  margin-top: 1.5rem;
 }
 
 .upload-form button:hover {
-  background: #DA498D;
+  background: var(--electric-violet);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -53,6 +68,8 @@ body {
     width: 97%;
     flex-direction: row;
     justify-content: space-around;
+    background: var(--void);
+    border: 1px solid var(--cyber-lavender);
   }
   nav .nav-shortcuts {
     flex-direction: row;
@@ -61,10 +78,11 @@ body {
 }
 
 .user-panel {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(157, 78, 221, 0.1);
   padding: 1rem;
   border-radius: 8px;
   margin: 1rem;
+  border: 1px solid var(--cyber-lavender);
 }
 
 @media (max-width: 480px) {
@@ -74,5 +92,9 @@ body {
   nav img {
     width: 30px;
     height: 30px;
+  }
+  .upload-form {
+    margin: 1rem;
+    padding: 1.5rem;
   }
 }

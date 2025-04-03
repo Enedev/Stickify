@@ -5,7 +5,6 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: auto 1fr;
@@ -13,25 +12,24 @@ body {
       "nav header header"
       "nav main aside";
   height: 100vh;
-  gap: 5px;
-
 }
 
 nav {
   grid-area: nav;
-  background: #F9E6CF;
+  background: var(--void);
+  border-right: 3px solid var(--galaxy-core);
+  box-shadow: 4px 0 15px rgba(16, 0, 43, 0.8);
   display: flex;
   position: fixed;
   padding: 0.5rem;
-  margin: 0.5rem;
   top: 0;
   left: 0;
   height: 100vh;
-  width: 15%;
   flex: 1;
   flex-wrap: nowrap;
   align-items: center;
-  border-radius: 1.5rem;
+  width: 15%;
+
 }
 
 nav .nav-shortcuts {
@@ -40,77 +38,208 @@ nav .nav-shortcuts {
   align-items: center;
   justify-content: center;
   width: 30%;
+  gap: 1.5rem;
+  padding: 2rem;
+  padding-right: 2.5rem;
+
 }
 
 .nav-shortcuts i {
-  font-size: 3rem;
-  color: #DA498D;
+  font-size: 2.2rem;
+  transition: transform 0.3s ease;
+  color: var(--cyber-lavender);
   cursor: pointer;
 }
 
 .nav-shortcuts i:hover{
-  font-size: 3rem;
+  transform: scale(1.15);
+  filter: drop-shadow(3px -3px 0px var(--hologram));
   color: #69247C;
   cursor: pointer;
 }
 
-nav .filter {
-  background-color: #ffd89e;
-  width: 60%;
-  height: 98%;
-  text-align: center;
-  color: #69247C;
-  font-size: 1.5rem;
-  border-radius: 1.5rem;
+.nav-shortcuts a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none; 
+}
 
+.nav-shortcuts a::after {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--void);
+  color: var(--hologram);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--cyber-lavender);
+  box-shadow: 3px 3px 10px rgba(16, 0, 43, 0.5);
+  z-index: 1000;
+}
+
+.nav-shortcuts a::before {
+  position: absolute;
+  left: 95%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--void);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.nav-shortcuts a:hover::after,
+.nav-shortcuts a:hover::before {
+  opacity: 1;
+  left: 110%;
+}
+
+.nav-shortcuts a[href="home.html"]::after { content: "Home"; }
+.nav-shortcuts a[href="profile.html"]::after { content: "Profile"; }
+.nav-shortcuts a[href="playlist.html"]::after { content: "Playlists"; }
+.nav-shortcuts a[href="songs.html"]::after { content: "Songs"; }
+.nav-shortcuts a[href="authors.html"]::after { content: "Authors"; }
+.nav-shortcuts a#logoutBtn::after { content: "Logout"; }
+
+nav .filter {
+  padding-left: 5px;
+  border-left: 1px solid var(--cyber-lavender);
+  color: var(--hologram);  width: 60%;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(90, 24, 154, 0.3);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+}
+
+nav .filter:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px var(--quantum-glow);
 }
 
 header {
   flex: 1;
-  background: #F9E6CF;
+  background: var(--void);
   grid-area: header;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
-  border-radius: 1.5rem;
-
+  border-bottom: 3px solid var(--galaxy-core);
+  box-shadow: 0 4px 20px rgba(16, 0, 43, 0.6);
+  padding: 1rem 2rem;
 }
+
 main {
+  background: var(--deep-space);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 2rem;
+  min-height: 100vh;
   grid-area: main;
-  background: #ffd89e;
-  padding: 20px;
   min-height: auto;
-  padding-top: 20px;
-  border-radius: 1.5rem;
+  box-shadow: 10px 0 10px 0 var(--deep-space);
 
 }
 aside {
+  background: linear-gradient(
+    270deg,
+    var(--void) 0%,
+    var(--deep-space) 100%
+);
+  border-left: 3px solid var(--galaxy-core);
   grid-area: aside;
-  background: #F9E6CF;
-  padding: 20px;
-  border-radius: 1.5rem;
+  padding: 2rem;
 }
 
-aside#topRatedSongs {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  width: 250px;
+aside  {
+  position: sticky;
+  border-left: 2px solid var(--galaxy-core);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 10px 0 10px 0 rgba(90, 24, 154, 0.4);
+  width: 280px;
 }
 
-aside#topRatedSongs ul {
+aside h2 {
+  color: var(--hologram);
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-shadow: var(--text-glow);
+}
+
+#topRatedList {
   list-style: none;
   padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.2rem;
 }
 
-aside#topRatedSongs li {
-  margin-bottom: 10px;
+#topRatedList li {
+  background: rgba(16, 0, 43, 0.6);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--galaxy-core);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+#topRatedList  li:hover {
+  transform: translateX(5px);
+  border-color: var(--quantum-glow);
+  box-shadow: 0 4px 15px rgba(199, 125, 255, 0.2);
+}
+
+#topRatedList li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  border: 2px solid var(--cyber-lavender);
+  box-shadow: 0 0 10px rgba(90, 24, 154, 0.3);
+  object-fit: cover;
+}
+
+#topRatedList li:hover img {
+  border-color: var(--quantum-glow);
+  transform: scale(1.05);
+}
+
+.artist-track {
+  display: block;
+  color: var(--hologram);
+  font-size: 0.95rem;
+}
+
+.artist-track:hover {
+  color: var(--text-secondary);
+}
+
+.rating {
+  display: block;
+  color: var(--quantum-glow);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.rating:hover{
+  color: var(--text-secondary);
 }
 
 @media (max-width: 1024px) {
@@ -148,6 +277,10 @@ aside#topRatedSongs li {
     width: 97%;
     flex-direction: row;
     justify-content: space-around;
+    border-right: 0px solid var(--galaxy-core);
+    box-shadow: 0px 0 0px rgba(16, 0, 43, 0.8);
+
+
   }
   nav .nav-shortcuts {
     flex-direction: row;

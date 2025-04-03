@@ -1,30 +1,19 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  background: #F9E6CF;
-  min-height: 100vh;
-  padding: 2rem;
-}
-
 .profile-container {
   max-width: 800px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--void);
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(92, 24, 154, 0.3);
   overflow: hidden;
+  border: 1px solid var(--cyber-lavender);
 }
 
 .profile-header {
-  background: #69247C;
+  background: var(--galaxy-core);
   padding: 2rem;
-  color: white;
+  color: var(--hologram);
   position: relative;
+  text-shadow: var(--text-glow);
 }
 
 .profile-header h1 {
@@ -34,6 +23,7 @@ body {
 
 .profile-header i {
   margin-right: 10px;
+  color: var(--quantum-glow);
 }
 
 .security-badge {
@@ -42,6 +32,7 @@ body {
   gap: 8px;
   font-size: 0.9rem;
   opacity: 0.9;
+  color: var(--text-secondary);
 }
 
 .profile-content {
@@ -57,47 +48,51 @@ body {
   align-items: center;
   padding: 1rem;
   margin: 1rem 0;
-  background: #f8f9fa;
+  background: var(--deep-space);
   border-radius: 10px;
   transition: transform 0.2s;
+  border: 1px solid var(--cyber-lavender);
 }
 
 .data-row:hover {
   transform: translateX(10px);
+  box-shadow: 0 4px 15px rgba(90, 24, 154, 0.3);
 }
 
 .data-row label {
   width: 200px;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--cyber-lavender);
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
 .data-row label i {
-  color: #69247C;
+  color: var(--quantum-glow);
   font-size: 1.1rem;
 }
 
 .data-row span {
   flex-grow: 1;
-  color: #34495e;
+  color: var(--text-secondary);
 }
 
 .password-display {
   font-family: monospace;
   letter-spacing: 3px;
   font-weight: bold;
+  color: var(--hologram);
 }
 
 pre {
-  background: #2c3e50;
-  color: white;
+  background: var(--galaxy-core);
+  color: var(--text-primary);
   padding: 1rem;
   border-radius: 8px;
   overflow-x: auto;
   font-size: 0.9rem;
+  border: 1px solid var(--cyber-lavender);
 }
 
 .profile-actions {
@@ -118,26 +113,65 @@ pre {
   gap: 0.8rem;
   transition: all 0.3s ease;
   font-weight: 500;
+  font-family: var(--font-primary);
+  font-size: 16px;
 }
 
 .home-btn {
-  background: #69247C;
-  color: white;
+  background: var(--neon-purple);
+  color: var(--text-primary);
 }
 
 .home-btn:hover {
-  background: #DA498D;
+  background: var(--electric-violet);
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(90, 24, 154, 0.3);
 }
 
 .logout-btn {
-  background: #f4a42d;
-  color: white;
+  background: var(--quantum-glow);
+  color: var(--text-primary);
 }
 
 .logout-btn:hover {
-  background: #FAC67A;
+  background: var(--hologram);
   transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(199, 125, 255, 0.3);
+}
+
+.playlist-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.playlist-cover-sm {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 2px solid var(--quantum-glow);
+}
+
+.playlist-card {
+  background: var(--deep-space);
+  padding: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--cyber-lavender);
+}
+
+.playlist-info h4 {
+  margin: 0;
+  color: var(--hologram);
+  font-size: 1.1rem;
+}
+
+.playlist-info p {
+  margin: 0.3rem 0;
+  color: var(--quantum-glow);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
@@ -158,38 +192,4 @@ pre {
   .profile-actions {
       flex-direction: column;
   }
-}
-
-.playlist-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.playlist-cover-sm {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  border: 2px solid #DA498D;
-}
-
-.playlist-card {
-  background: #FAC67A;
-  padding: 1rem;
-  border-radius: 1rem;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.playlist-info h4 {
-  margin: 0;
-  color: #69247C;
-  font-size: 1.1rem;
-}
-
-.playlist-info p {
-  margin: 0.3rem 0;
-  color: #DA498D;
-  font-size: 0.9rem;
 }

@@ -6,29 +6,53 @@ body {
       "nav main";
   height: 100vh;
   gap: 5px;
-
+  background: var(--deep-space);
 }
 
 #authorResults {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .author-item {
-  background: #F9E6CF;
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--void);
+  padding: 1.5rem;
+  border-radius: 15px;
   text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid var(--cyber-lavender);
+  box-shadow: 0 4px 15px rgba(92, 24, 154, 0.3);
+}
+
+.author-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(157, 78, 221, 0.4);
+  border-color: var(--quantum-glow);
 }
 
 .author-item img {
-  max-width: 100px;
-  height: auto;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  border: 3px solid var(--quantum-glow);
+  box-shadow: 0 0 20px rgba(199, 125, 255, 0.3);
+  object-fit: cover;
 }
 
+.author-info h3 {
+  color: var(--hologram);
+  margin: 0.5rem 0;
+  text-shadow: var(--text-glow);
+}
+
+.author-info p {
+  color: var(--text-secondary);
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
 
 @media (max-width: 768px) {
   body {
@@ -40,6 +64,8 @@ body {
         "main";
   }
   nav {
+    background: var(--void);
+    border: 1px solid var(--cyber-lavender);
     position: relative;
     height: auto;
     width: 97%;
@@ -50,13 +76,18 @@ body {
     flex-direction: row;
     width: auto;
   }
+  #authorResults {
+    padding: 1rem;
+  }
 }
 
 .user-panel {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
+  background: linear-gradient(45deg, rgba(36, 0, 70, 0.8), rgba(92, 24, 154, 0.5));
+  padding: 1.5rem;
+  border-radius: 15px;
   margin: 1rem;
+  border: 1px solid var(--cyber-lavender);
+  backdrop-filter: blur(5px);
 }
 
 @media (max-width: 480px) {
@@ -66,5 +97,12 @@ body {
   nav img {
     width: 30px;
     height: 30px;
+  }
+  .author-item {
+    margin: 0.5rem;
+  }
+  .author-item img {
+    width: 80px;
+    height: 80px;
   }
 }

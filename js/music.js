@@ -125,21 +125,26 @@ document.addEventListener("DOMContentLoaded", () => {
             `).join('');
 
             songContainer.innerHTML = `
-                <div class="song-details" style="background: #F9E6CF; padding: 10px; border-radius: 10px; margin-bottom: 15px;">
-                    <img src="${song.artworkUrl100}" alt="${song.trackName}"
-                        style="max-width: 100px; height: auto; float: left; margin-right: 10px; cursor: pointer;" data-trackid="${song.trackId}">
-                    <div class="song-info">
-                        <h3>${song.artistName}</h3>
-                        <p><strong>Nombre de la canción:</strong> ${song.trackName}</p>
-                        <p><strong>Género:</strong> ${song.primaryGenreName}</p>
-                        <p><strong>Álbum:</strong> ${song.collectionName}</p>
-                        ${song.releaseDate ? `<p><strong>Fecha de lanzamiento:</strong> ${song.releaseDate}</p>` : ''}
-                        ${averageRating > 0 ? `<p><strong>Calificación promedio:</strong> ${averageRating.toFixed(2)}</p>` : '<p><strong>Calificación promedio:</strong> No calificado</p>'}
+                <div class="song-container">
+                    <div class="song-details">
+                        <div class="img-container">
+                            <img src="${song.artworkUrl100}" alt="${song.trackName}" data-trackid="${song.trackId}">
+                        </div>
+                        <div class="song-info">
+                            <h3>${song.artistName}</h3>
+                            <p><strong>Canción</strong> ${song.trackName}</p>
+                            <p><strong>Género</strong> ${song.primaryGenreName}</p>
+                            <p><strong>Álbum</strong> ${song.collectionName}</p>
+                            ${song.releaseDate ? `<p><strong>Lanzamiento</strong> ${song.releaseDate}</p>` : ''}
+                            <div class="rating-stars">
+                            ${Array(Math.round(averageRating)).fill('<span class="star">★</span>').join('')}
+                            </div>
+                        </div>
                     </div>
                 </div>
             `;
 
-            songContainer.querySelector('img').addEventListener('click', () => {
+            songContainer.querySelector('.song-details').addEventListener('click', () => {
                 openModal(song.trackId);
             });
 
@@ -232,6 +237,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 newCommentInput.value = '';
             }
         };
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) { // Si el clic fue en el fondo oscuro
+                modal.style.display = "none";
+            }
+        });        
 
         modal.querySelector('.close').onclick = () => {
             modal.style.display = "none";
@@ -362,8 +373,13 @@ document.addEventListener("DOMContentLoaded", () => {
         top5Songs.forEach(({ song, averageRating }) => {
             const listItem = document.createElement("li");
             listItem.innerHTML = `
-                <img src="${song.artworkUrl100}" alt="${song.trackName}" style="max-width: 50px; height: auto; margin-right: 10px;">
-                ${song.artistName} - ${song.trackName} (Promedio: ${averageRating.toFixed(2)})
+                <img src="${song.artworkUrl100}" 
+                     alt="${song.trackName}" 
+                     style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px; margin-right: 10px;">
+                <div class="song-info">
+                    <span class="artist-track">${song.artistName} - ${song.trackName}</span>
+                    <small class="rating">★ ${averageRating.toFixed(2)}</small>
+                </div>
             `;
             topRatedList.appendChild(listItem);
         });

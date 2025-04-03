@@ -3,37 +3,105 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  gap: 0.8rem;
 }
 
-#genreToggle, #dateToggle, #artistToggle {
-  background: #DA498D;
-  color: white;
-  padding: 10px 15px;
+#genreToggle,
+#dateToggle,
+#artistToggle {
+  background: rgba(36, 0, 70, 0.6);
+  border: 1px solid var(--galaxy-core);
+  color: var(--hologram);
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
   border: none;
-  border-radius: 10px;
+  font-size: 1.0rem;
 }
 
-#genreFilters, #dateFilters, #artistFilters {
+#genreToggle:hover,
+#dateToggle:hover,
+#artistToggle:hover {
+  border-color: var(--hologram);
+  color: var(--text-primary);
+  box-shadow: inset 0 0 15px rgba(199, 125, 255, 0.2);
+  transform: translateY(-2px);
+}
 
+#genreFilters,
+#dateFilters,
+#artistFilters {
   position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 15px;
+  background: rgba(36, 0, 70, 0.95);
+  border: 2px solid var(--cyber-lavender);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(16, 0, 43, 0.6);
+  padding: 1.5rem;
   display: none;
   z-index: 10;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  width: 250px;
+  width: 200px;
   max-height: 300px;
   overflow-y: auto;
 }
 
-#genreFilters.show, #dateFilters.show,#artistFilters.show {
+#genreFilters.show,
+#dateFilters.show,
+#artistFilters.show {
   display: block;
 }
+
+.checkbox-containe0r,.artist-checkbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.checkbox-container div,.artist-checkbox-container div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.checkbox-container div:hover,.artist-checkbox-container div:hover {
+  background: rgba(199, 125, 255, 0.1);
+  box-shadow: inset 4px 0 0 var(--quantum-glow);
+  transform: translateX(5px);
+}
+
+.checkbox-container div input[type="checkbox"],.artist-checkbox-container div input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--quantum-glow);
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.checkbox-container div label, .artist-checkbox-container div label {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  flex-grow: 1;
+  transition: color 0.3s ease;
+}
+
+.checkbox-container div:hover label, .artist-checkbox-container div:hover label {
+  color: var(--hologram);
+  text-shadow: var(--text-glow);
+}
+
 .close-filter {
   position: absolute;
   top: 5px;
@@ -41,21 +109,47 @@
   cursor: pointer;
   font-size: 1.2em;
 }
-.genre-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 8px;
+
+.close-filter {
+  color: var(--hologram);
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
-.genre-row label {
-  margin-left: 8px;
-  font-size: 14px;
-  color: #333;
+.close-filter:hover {
+  color: var(--quantum-glow);
+  transform: scale(1.2);
 }
 
-.genre-row input[type="checkbox"] {
-  cursor: pointer;
+#dateFilters {
+  overflow: hidden;
 }
 
+#dateFilters input {
+  border: 2px solid var(--galaxy-core);
+  background: rgba(36, 0, 70, 0.8);
+  color: var(--text-primary);
+  width: 70%;
+  padding: 12px 25px;
+  border-radius: 1.5rem 0 0 1.5rem;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(16, 0, 43, 0.4);
+  z-index: 2;
+}
 
+#genreFilters::-webkit-scrollbar,
+#artistFilters::-webkit-scrollbar {
+  width: 8px;
+}
+
+#genreFilters::-webkit-scrollbar-track,
+#artistFilters::-webkit-scrollbar-track {
+  background: rgba(16, 0, 43, 0.4);
+}
+
+#genreFilters::-webkit-scrollbar-thumb,
+#artistFilters::-webkit-scrollbar-thumb {
+  background: var(--cyber-lavender);
+  border-radius: 4px;
+}

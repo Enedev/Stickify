@@ -6,12 +6,19 @@ document.getElementById('signInForm').addEventListener('submit', function(e) {
         const username = this.querySelector('input[type="text"]').value.trim();
         const email = this.querySelector('input[type="email"]').value.trim();
         const password = this.querySelector('input[type="password"]').value.trim();
-        
+        const repeatPassword = this.querySelectorAll('input[type="password"]')[1].value.trim();
+
         console.log('Datos capturados:', { username, email, password });
 
         if (!username || !email || !password) {
             console.warn('Validación fallida: Campos vacíos');
             alert('Por favor, complete todos los campos');
+            return;
+        }
+
+        // Validación de contraseñas
+        if (password !== repeatPassword) {
+            alert('Las contraseñas no coinciden');
             return;
         }
 
