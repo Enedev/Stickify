@@ -1,24 +1,32 @@
 #pagination {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1rem;
 }
 
 .page-button {
-  margin: 0 5px;
-  padding: 5px 10px;
-  background-color: #69247C;
-  color: #FAC67A;
-  border: none;
-  border-radius: 5px;
+  margin: 0 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--neon-purple);
+  color: var(--hologram);
+  border: 2px solid var(--cyber-lavender);
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(90, 24, 154, 0.3);
 }
 
 .page-button:hover {
-  background-color: #DA498D;
-  color: white;
+  background: var(--electric-violet);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.4);
+  border-color: var(--quantum-glow);
 }
 
 .page-button.active {
-  background-color: #69247C;
-  color: white;
+  background: var(--quantum-glow);
+  color: var(--deep-space);
+  border-color: var(--hologram);
+  box-shadow: 0 0 15px var(--quantum-glow);
 }
